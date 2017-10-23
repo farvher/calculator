@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 
-<title>Insert title here</title>
+<title>Spring Calculator</title>
 
 <meta charset="utf-8">
 <meta name="viewport"
@@ -23,54 +23,83 @@
 
 			<div class="col-sm-4">
 
+				<h2>Calculadora</h2>
 				<form action="/calculate" method="post">
-					<div class="form-group">
-						<input type="number" name="var" min="-9999999" max="9999999" required="required" class="form-control" th:value="${result!= null ? result : 0}" />
-						<input type="hidden" value="0" name="result" th:value="${result!= null ? result : 0}" />
-					</div>
+					<div class="alert alert-secondary" role="alert"
+						th:text="${result!= null ? result : 0}"></div>
 
-					<div class="input-group">
-					<input type="submit"  class="btn btn-default" value="SUMA" name="operation"/>
-					<input type="submit"  class="btn btn-default" value="RESTA" name="operation"/>
-					<input type="submit"  class="btn btn-default" value="MULTIPLICACION" name="operation"/>
-					<input type="submit"  class="btn btn-default" value="DIVISION" name="operation"/>
+					<div class="form-group">
+						<input type="number" name="var" required="required"
+							class="form-control" th:value="${result!= null ? result: ''}" />
+						<input type="hidden" value="0" name="result"
+							th:value="${result!= null ? result : 0}" />
 					</div>
-					<div class="input-group">
-					<input type="submit"  class="btn btn-default" value="SENO" name="operation"/>
-					<input type="submit"  class="btn btn-default" value="COSENO" name="operation"/>
-					<input type="submit"  class="btn btn-default" value="TANGENTE" name="operation"/>
+					<div class="list-group">
+							<input type="submit" class="btn btn-primary" value="SUMA"
+								name="operation" /> <input type="submit"
+								class="btn btn-primary" value="RESTA" name="operation" /> <input
+								type="submit" class="btn btn-primary" value="MULTIPLICACION"
+								name="operation" /> <input type="submit"
+								class="btn btn-primary" value="DIVISION" name="operation" />
+							<input type="submit" class="btn btn-primary" value="SENO"
+								name="operation" /> <input type="submit"
+								class="btn btn-primary" value="COSENO" name="operation" /> <input
+								type="submit" class="btn btn-primary" value="TANGENTE"
+								name="operation" />
+							<input type="submit" class="btn btn-primary" value="POTENCIA"
+								name="operation" /> <input type="submit"
+								class="btn btn-primary" value="LOGARITMO" name="operation" /> <input
+								type="submit" class="btn btn-primary" value="RESET"
+								name="operation" />
 					</div>
-					<div class="input-group">
-					<input type="submit"  class="btn btn-default" value="POTENCIA" name="operation"/>
-					<input type="submit"  class="btn btn-default" value="LOGARITMO" name="operation"/>
-					
-					</div>
+					<div class="alert alert-info" th:if="${executonTime!=null}"
+						th:text="|${executonTime} Nano segundos|"></div>
 
 
 				</form>
 
 			</div>
+			<div class="col-sm-4">
+				<h2>Encriptador</h2>
+				<form action="/encrypt" method="post">
 
+					<input type="text" required="required" name="word" th:value="${word}"
+						class="form-control" />
+
+					<div class="list-group">
+						<input type="submit" name="action" value="encriptar"
+							class="btn btn-primary" /> <input type="submit" name="action"
+							value="desencriptar" class="btn btn-primary" />
+					</div>
+					<div class="alert alert-info" th:if="${cryp!=null}"
+						th:text="${cryp}"></div>
+
+				</form>
+			</div>
 
 
 		</div>
 
 
 
-		<script src="https://code.jquery.com/jquery-3.2.1.js"
-			integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-			crossorigin="anonymous"></script>
-		<!-- Optional JavaScript -->
-		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	</div>
 
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
-			integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-			crossorigin="anonymous"></script>
-		<script
-			src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
-			integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
-			crossorigin="anonymous"></script>
+
+
+	<script src="https://code.jquery.com/jquery-3.2.1.js"
+		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		crossorigin="anonymous"></script>
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+		integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+		integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+		crossorigin="anonymous"></script>
 
 
 	</div>

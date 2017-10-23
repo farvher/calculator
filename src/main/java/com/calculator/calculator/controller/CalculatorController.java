@@ -1,18 +1,15 @@
 package com.calculator.calculator.controller;
 
-import java.util.function.BiFunction;
 import java.util.function.DoubleBinaryOperator;
 import java.util.function.DoubleFunction;
-import java.util.function.Function;
-import java.util.function.IntBinaryOperator;
-import java.util.function.IntFunction;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.calculator.calculator.Encryptor;
 import com.calculator.calculator.enumeration.EOperations;
 
 @Controller
@@ -28,8 +25,9 @@ public class CalculatorController {
 	}
 
 	@PostMapping("/calculate")
-	public String calculate(String operation, Double result, Double var, Model m) {
+	public String calculate(String operation, Double result, Double var, Model m,RedirectAttributes r) {
 
+		long start = System.nanoTime();
 		EOperations eo = EOperations.getOperation(operation);
 
 		DoubleBinaryOperator f2 = null;
@@ -49,10 +47,10 @@ public class CalculatorController {
 			f2 = (a, b) -> a / b;
 			break;
 		case SEN:
-			f1 = a -> a;
+			f1 = a -> Math.sin(a);
 			break;
 		case COS:
-			f1 = a -> Math.sin(a);
+			f1 = a -> Math.cos(a);
 			break;
 		case TAN:
 			f1 = a -> Math.tan(a);
@@ -63,29 +61,32 @@ public class CalculatorController {
 		case POW:
 			f2 = (a, b) -> Math.pow(a, b);
 			break;
+		case CE:
+			f2 = (a, b) -> 0;
+			f1 = a -> 0;
+			break;
 		default:
 			f2 = null;
 			f1 = null;
 			break;
 		}
 
-		m.addAttribute("result", f2 != null ? f2.applyAsDouble(result, var) : f1 != null ? f1.apply(var) : 0);
+		long end = System.nanoTime();
+		long  executonTime = end - start;
+		
+		r.addFlashAttribute("result", f2 != null ? f2.applyAsDouble(result, var) : f1 != null ? f1.apply(var) : 0);
+		r.addFlashAttribute("executonTime", executonTime);
 
-		return INDEX;
-
-	}
-
-	@GetMapping("/encrypt")
-	public String encrypt() {
-
-		return INDEX;
+		return "redirect:/";
 
 	}
 
-	@GetMapping("/desencrypt")
-	public String desEncrypt() {
-
-		return INDEX;
+	@PostMapping("/encrypt")
+	public String encrypt(String word,String action, RedirectAttributes r) {
+		r.addFlashAttribute("word", word);
+		r.addFlashAttribute("cryp", "encriptar".equals(action)? Encryptor.encrypt(word):Encryptor.decrypt(word));
+		return "redirect:/";
 
 	}
+	
 }
