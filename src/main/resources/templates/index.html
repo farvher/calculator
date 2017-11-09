@@ -35,22 +35,21 @@
 							th:value="${result!= null ? result : 0}" />
 					</div>
 					<div class="list-group">
-							<input type="submit" class="btn btn-primary" value="SUMA"
-								name="operation" /> <input type="submit"
-								class="btn btn-primary" value="RESTA" name="operation" /> <input
-								type="submit" class="btn btn-primary" value="MULTIPLICACION"
-								name="operation" /> <input type="submit"
-								class="btn btn-primary" value="DIVISION" name="operation" />
-							<input type="submit" class="btn btn-primary" value="SENO"
-								name="operation" /> <input type="submit"
-								class="btn btn-primary" value="COSENO" name="operation" /> <input
-								type="submit" class="btn btn-primary" value="TANGENTE"
-								name="operation" />
-							<input type="submit" class="btn btn-primary" value="POTENCIA"
-								name="operation" /> <input type="submit"
-								class="btn btn-primary" value="LOGARITMO" name="operation" /> <input
-								type="submit" class="btn btn-primary" value="RESET"
-								name="operation" />
+						<input type="submit" class="btn btn-primary" value="SUMA"
+							name="operation" /> <input type="submit" class="btn btn-primary"
+							value="RESTA" name="operation" /> <input type="submit"
+							class="btn btn-primary" value="MULTIPLICACION" name="operation" />
+						<input type="submit" class="btn btn-primary" value="DIVISION"
+							name="operation" /> <input type="submit" class="btn btn-primary"
+							value="SENO" name="operation" /> <input type="submit"
+							class="btn btn-primary" value="COSENO" name="operation" /> <input
+							type="submit" class="btn btn-primary" value="TANGENTE"
+							name="operation" /> <input type="submit" class="btn btn-primary"
+							value="POTENCIA" name="operation" /> <input type="submit"
+							class="btn btn-primary" value="RAIZ" name="operation" /> <input
+							type="submit" class="btn btn-primary" value="LOGARITMO"
+							name="operation" /> <input type="submit" class="btn btn-primary"
+							value="RESET" name="operation" />
 					</div>
 					<div class="alert alert-info" th:if="${executonTime!=null}"
 						th:text="|${executonTime} Nano segundos|"></div>
@@ -63,8 +62,8 @@
 				<h2>Encriptador</h2>
 				<form action="/encrypt" method="post">
 
-					<input type="text" required="required" name="word" th:value="${word}"
-						class="form-control" />
+					<input type="text" required="required" name="word"
+						th:value="${word}" class="form-control" />
 
 					<div class="list-group">
 						<input type="submit" name="action" value="encriptar"

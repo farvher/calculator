@@ -25,7 +25,7 @@ public class CalculatorController {
 	}
 
 	@PostMapping("/calculate")
-	public String calculate(String operation, Double result, Double var, Model m,RedirectAttributes r) {
+	public String calculate(String operation, Double result, Double var, Model m, RedirectAttributes r) {
 
 		long start = System.nanoTime();
 		EOperations eo = EOperations.getOperation(operation);
@@ -61,6 +61,9 @@ public class CalculatorController {
 		case POW:
 			f2 = (a, b) -> Math.pow(a, b);
 			break;
+		case SQRT:
+			f1 = (a) -> Math.sqrt(a);
+			break;
 		case CE:
 			f2 = (a, b) -> 0;
 			f1 = a -> 0;
@@ -72,8 +75,8 @@ public class CalculatorController {
 		}
 
 		long end = System.nanoTime();
-		long  executonTime = end - start;
-		
+		long executonTime = end - start;
+
 		r.addFlashAttribute("result", f2 != null ? f2.applyAsDouble(result, var) : f1 != null ? f1.apply(var) : 0);
 		r.addFlashAttribute("executonTime", executonTime);
 
@@ -82,11 +85,11 @@ public class CalculatorController {
 	}
 
 	@PostMapping("/encrypt")
-	public String encrypt(String word,String action, RedirectAttributes r) {
+	public String encrypt(String word, String action, RedirectAttributes r) {
 		r.addFlashAttribute("word", word);
-		r.addFlashAttribute("cryp", "encriptar".equals(action)? Encryptor.encrypt(word):Encryptor.decrypt(word));
+		r.addFlashAttribute("cryp", "encriptar".equals(action) ? Encryptor.encrypt(word) : Encryptor.decrypt(word));
 		return "redirect:/";
 
 	}
-	
+
 }
