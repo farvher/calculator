@@ -5,7 +5,8 @@ import java.util.function.Function;
 public enum EOperations {
 
 	SUM("SUMA"), REST("RESTA"), MULT("MULTIPLICACION"), DIVI("DIVISION"), SEN("SENO"), COS("COSENO"), TAN(
-			"TANGENTE"),SQRT("RAIZ"), POW("POTENCIA"), LOG10("LOGARITMO"),CE("RESET");
+			"TANGENTE"), SQRT("RAIZ"), POW("POTENCIA"), LOG10("LOGARITMO"), CE("RESET"), DECIMAL(
+					"DECIMAL"), BINARIO("BINARIO"), OCTAL("OCTAL"), HEXADECIMAL("HEXADECIMAL"), BCD("BCD");
 
 	private String name;
 

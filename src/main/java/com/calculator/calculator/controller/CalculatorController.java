@@ -1,5 +1,7 @@
 package com.calculator.calculator.controller;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.DoubleBinaryOperator;
 import java.util.function.DoubleFunction;
 
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.thymeleaf.util.NumberUtils;
 
 import com.calculator.calculator.Encryptor;
 import com.calculator.calculator.enumeration.EOperations;
@@ -90,6 +93,24 @@ public class CalculatorController {
 		r.addFlashAttribute("cryp", "encriptar".equals(action) ? Encryptor.encrypt(word) : Encryptor.decrypt(word));
 		return "redirect:/";
 
+	}
+	
+	
+	@PostMapping("/convert")
+	public String convertSystem(String number, RedirectAttributes r){
+	
+		Map<String , String>  result = new HashMap();
+//		result.put("DECIMAL", Integer.TO);
+//		result.put("BINARIO", Integer.toBinaryString(number));
+//		result.put("OCTAL", Integer.toOctalString(i));
+//		result.put("HEXADECIMAL", value);
+//		result.put("BCD", value);
+		
+		r.addFlashAttribute("convert",result);
+		
+		
+		
+		return "redirect:/";
 	}
 
 }
