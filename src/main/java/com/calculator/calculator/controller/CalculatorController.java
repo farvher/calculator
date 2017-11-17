@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.thymeleaf.util.NumberUtils;
 
 import com.calculator.calculator.Encryptor;
+import com.calculator.calculator.enumeration.BCD;
 import com.calculator.calculator.enumeration.EOperations;
 
 @Controller
@@ -97,18 +98,19 @@ public class CalculatorController {
 	
 	
 	@PostMapping("/convert")
-	public String convertSystem(String number, RedirectAttributes r){
+	public String convertSystem(String value, RedirectAttributes r){
 	
+		Integer integer = Integer.parseInt(value);
+		Long longNumber = Long.parseLong(value);
 		Map<String , String>  result = new HashMap();
-//		result.put("DECIMAL", Integer.TO);
-//		result.put("BINARIO", Integer.toBinaryString(number));
-//		result.put("OCTAL", Integer.toOctalString(i));
-//		result.put("HEXADECIMAL", value);
-//		result.put("BCD", value);
+		result.put("DECIMAL", integer.toString());
+		result.put("BINARIO", Integer.toBinaryString(integer));
+		result.put("OCTAL", Integer.toOctalString(integer));
+		result.put("HEXADECIMAL", Integer.toHexString(integer));
+		result.put("BCD", BCD.testForValue(longNumber));
 		
 		r.addFlashAttribute("convert",result);
-		
-		
+		r.addFlashAttribute("value", value);
 		
 		return "redirect:/";
 	}

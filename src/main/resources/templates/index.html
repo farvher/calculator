@@ -75,6 +75,23 @@
 
 				</form>
 			</div>
+			
+				<div class="col-sm-4">
+				<h2>Convertidor</h2>
+				<form action="convert" method="post">
+
+					<input type="number" required="required" name="value"
+						th:value="${value}" class="form-control" />
+
+					<div class="list-group">
+						<input type="submit" name="action" value="Convertir"
+							class="btn btn-primary" /> 
+					</div>
+					<div class="alert alert-info" th:if="${convert!=null}"
+						 th:each="instance : ${convert}" th:text="|${instance.key} : ${instance.value}|"></div>
+
+				</form>
+			</div>
 
 
 		</div>
