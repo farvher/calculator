@@ -75,8 +75,8 @@
 
 				</form>
 			</div>
-
-			<div class="col-sm-4">
+			
+				<div class="col-sm-4">
 				<h2>Convertidor</h2>
 				<form action="convert" method="post">
 
@@ -85,11 +85,10 @@
 
 					<div class="list-group">
 						<input type="submit" name="action" value="Convertir"
-							class="btn btn-primary" />
+							class="btn btn-primary" /> 
 					</div>
 					<div class="alert alert-info" th:if="${convert!=null}"
-						th:each="instance : ${convert}"
-						th:text="|${instance.key} : ${instance.value}|"></div>
+						 th:each="instance : ${convert}" th:text="|${instance.key} : ${instance.value}|"></div>
 
 				</form>
 			</div>
@@ -97,11 +96,7 @@
 
 		</div>
 
-		<footer>
-		
-		<label>Codigo fuente :</label> <a href="https://github.com/farvher/calculator" class="">https://github.com/farvher/calculator</a>
-			<p>© 2017</p>
-		</footer>
+
 
 	</div>
 
